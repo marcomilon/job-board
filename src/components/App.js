@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Nav from './Nav';
+import Card from './Card';
 
-class App extends Component {
-    render() {
+function App(props) {
         return (
             <div>
-            <h1>Welcome</h1>
+                <Nav />
+                <Feed />
             </div>
         )
     }
