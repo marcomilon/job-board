@@ -14,7 +14,11 @@ function Login(props) {
   return (                
     <div className="d-flex justify-content-center align-items-center container">
       <div className="form">
-        <Form schema={schema} />
+        <Form schema={schema} >
+            <div className="text-right">
+                <button className="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </Form>
       </div>
     </div>
   )
