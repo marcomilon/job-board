@@ -12,8 +12,8 @@ const schema = {
 
 function Login(props) {
   return (                
-    <div className="container">
-      <div>
+    <div className="d-flex justify-content-center align-items-center container">
+      <div className="form">
         <Form schema={schema} />
       </div>
     </div>

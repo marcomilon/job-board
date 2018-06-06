@@ -1,12 +1,6 @@
 import React from 'react'
-import Login from './Login'
-import Signin from './Signin'
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import logo from './logo-reverse-small.png';
 
 function Nav(props) {
   return ( 
@@ -14,7 +8,7 @@ function Nav(props) {
           <div className="bg-light" id="navbarHeader">
               <div className="container">
                   <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                      <a className="navbar-brand" href="#">Navbar</a>
+                      <Link to="/" className="navbar-brand"><img src={logo} /></Link>
                       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span className="navbar-toggler-icon"></span>
                       </button>
@@ -22,10 +16,10 @@ function Nav(props) {
                       <div className="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul className="navbar-nav ml-auto">
                               <li className="nav-item active">
-                                  <Link to="/login">Profesionales</Link>
+                                  <Link to="/login" className="nav-link">Profesionales</Link>
                               </li>
                               <li className="nav-item">
-                                  <Link to="/signin">Empresas</Link>
+                                  <Link to="/signin" className="nav-link">Empresas</Link>
                               </li>
                           </ul>
                       </div>
