@@ -21,13 +21,26 @@ class Feed extends React.Component {
           "intro": "intro 4"
         }
       ]
-    };
+    }
+    
+    this.menu = [
+      {
+        to: '/login',
+        label: 'Profesionales'
+      },
+      {
+        to: '/signin',
+        label: 'empresas'
+      }
+    ]
+    
   }
+  
   
   render() {
     return (
       <div>
-        <Nav />
+        <Nav menu={this.menu} />
         <main role="main">
           <div className="container">
             <h1 id="main-title" className="mt-5 mb-3">Empleos para ti</h1>
