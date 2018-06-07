@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from './Nav'
+import Nav from './../common/Nav'
 import Card from './Card'
 
 class Feed extends React.Component {
@@ -35,6 +35,7 @@ class Feed extends React.Component {
             {this.state.jobs.map((job) =>
               <Card title={job.title} intro={job.intro}/>
             )}
+            
           </div>
         </main>
       </div>

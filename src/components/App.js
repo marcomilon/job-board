@@ -1,14 +1,8 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import Nav from './Nav'
-import Feed from './Feed'
-import Card from './Card'
-import Login from './Login'
-import Signin from './Signin'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Feed from './jobs/Feed'
+import Login from './user/Login'
+import Signin from './user/Signin'
 
 
 function App(props) {
