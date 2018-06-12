@@ -28,7 +28,7 @@ function Login(props) {
     <div>
       <Nav />                
       <div className="d-flex justify-content-center align-items-center container">
-        <div className="form">
+        <div className="login-form">
           <Form schema={schema} uiSchema={uiSchema}>
               <div className="text-right">
                   <button className="btn btn-primary" type="submit">Submit</button>

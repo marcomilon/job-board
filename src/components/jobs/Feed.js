@@ -25,12 +25,8 @@ class Feed extends React.Component {
     
     this.menu = [
       {
-        to: '/login',
-        label: 'Profesionales'
-      },
-      {
-        to: '/signin',
-        label: 'empresas'
+        to: '/post',
+        label: 'Publica tu empleo'
       }
     ]
     
