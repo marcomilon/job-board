@@ -15,7 +15,6 @@ class Post extends React.Component {
     
     submitJob({formData}) {
         console.log(formData);
-        this.setState({step: 2});
         // db.collection("jobs").add({
         //     title: formData.title,
         //     description: formData.description
@@ -42,8 +41,7 @@ class Post extends React.Component {
     
     render() {
         return (
-            <div>
-                <Nav />                
+            <div className="container">
                 {this.renderStep(this.state.step)}
             </div>
         )
