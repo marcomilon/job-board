@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from 'react-jsonschema-form'
-import Logo from '../../common/Logo.js'
+import JobsForm from '../../common/form/JobsForm'
+import Logo from '../../common/Logo'
 import './job.sass'
 
 function Job(props) {
@@ -19,54 +19,16 @@ function Job(props) {
             if (error.property === ".job.howtoapply") {
                 error.message = "Porfavor explica como postular al trabajo"
             }
+            if (error.property === ".company.name") {
+                error.message = "Porfavor ingresa el nombre de la empresa"
+            } 
+            if (error.property === ".company.email") {
+                error.message = "Porfavor ingresa el correo de la empresa"
+            }                  
             return error;
         });
     }
-    
-    function Label(props) {
-        const { label, required, id } = props;
-        if (!label) {
-        // See #312: Ensure compatibility with old versions of React.
-        return <div />;
-        }
-        return (
-            <label className="control-label" htmlFor={id}>
-              {label}
-              {required && <span className="required">*</span>}
-            </label>
-        );
-    }
         
-    function JobFieldTemplate(props) {
-        const {
-            id,
-            classNames,
-            label,
-            children,
-            errors,
-            help,
-            description,
-            hidden,
-            required,
-            displayLabel,
-            rawErrors=[]
-        } = props;
-        
-        if (hidden) {
-            return children;
-        }
-        
-        return (            
-            <div className={classNames}>
-              {displayLabel && <Label label={label} required={required} id={id} />} 
-              {displayLabel && description ? description : null}
-              {children}
-              {rawErrors.map(error => <div className="error">{error}</div>)}
-              {help}
-            </div>
-        );
-    }
-    
     const schema = {
         "type": "object",
         "title": "Publica tu empleo",
@@ -115,6 +77,10 @@ function Job(props) {
             "company": {
                 "type": "object",
                 "title": "Cuentanos sobre tu empresa",
+                "required": [
+                    "name",
+                    "email"
+                ],
                 "properties": {
                     "name": { 
                         "type": "string", 
@@ -182,21 +148,7 @@ function Job(props) {
                 </p>
             </div>
             <div className="col-md-12">
-                <Form 
-                    className="job-form" 
-                    FieldTemplate={JobFieldTemplate} 
-                    showErrorList={false} 
-                    noHtml5Validate={true} 
-                    schema={schema} 
-                    uiSchema={uiSchema} 
-                    transformErrors={transformErrors}
-                    onSubmit={props.submitJob} 
-                    liveValidate={true}
-                    >
-                    <div className="text-right">
-                        <button className="btn btn-primary" type="submit">Continuar</button>
-                    </div>
-                </Form>
+                <JobsForm schema={schema} uiSchema={uiSchema} transformErrors={transformErrors}/>
             </div>
         </div>
     )
