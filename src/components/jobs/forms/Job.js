@@ -113,7 +113,13 @@ function Job(props) {
     };
     
     const uiSchema = {
-        "job": {                
+        "job": {     
+            "title": {
+                "ui:help": "\"Diseñador grafico\" o \"Desarrollador frontend\""
+            },
+            "place": {
+                "ui:help": "En que ciudad se encuentra la empresa"
+            },           
             "description": {
                 "classNames": "wide-input",
                 "ui:widget": "textarea",
@@ -123,7 +129,8 @@ function Job(props) {
             },
             "howtoapply": {
                 "classNames": "wide-input",
-                "ui:widget": "textarea"
+                "ui:widget": "textarea",
+                "ui:help": "Ejemplo: Enviar CV a informes@empresa.com"
             }
         },
         "company": {
@@ -136,14 +143,24 @@ function Job(props) {
                 "ui:options": {
                     "rows": 5
                 }
+            },
+            "logo": {
+                "ui:help": "Es muy recomendable que subas el logo de tu empresa"
             }
         }
     }
         
     return (             
-        <div className="row ml-5 mr-5 mb-5">
-            <div className="col-md-12">
-                <p className="mt-5 job-presentation">
+        <div className="row mb-5">
+            <div className="col-md-12 mt-4">
+                <div className="text-right">
+                    <button type="button" className="btn btn-primary mr-2">1. Crea anuncio</button>
+                    <button type="button" className="btn btn-light mr-2">2. Preview</button>
+                    <button type="button" className="btn btn-light mr-2">3. Publica</button>
+                </div>
+            </div>
+            <div className="col-md-12 mt-4">
+                <p className="job-presentation">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
             </div>

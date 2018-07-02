@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from 'react-jsonschema-form'
 import Nav from '../common/Nav'
+import Footer from '../common/Footer'
 import Job from './forms/Job'
 import Company from './forms/Company'
 import { db } from '../../firebase';
@@ -41,8 +42,12 @@ class Post extends React.Component {
     
     render() {
         return (
-            <div className="container">
-                {this.renderStep(this.state.step)}
+            <div>
+                <Nav menu={this.menu} />
+                <div className="container">
+                    {this.renderStep(this.state.step)}
+                </div>
+                <Footer />
             </div>
         )
     }

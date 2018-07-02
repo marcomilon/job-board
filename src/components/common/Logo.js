@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo-reverse-small.png';
 
 function Logo(props) {
-  return (<img src={logo} />)
+  return (<span className="logo">Trabajos</span>)
 }
 
 export default Logo

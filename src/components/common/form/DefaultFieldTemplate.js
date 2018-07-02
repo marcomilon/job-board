@@ -25,8 +25,8 @@ function DefaultFieldTemplate(props) {
           {displayLabel && <Label label={label} required={required} id={id} />} 
           {displayLabel && description ? description : null}
           {children}
-          {rawErrors.map(error => <div className="error">{error}</div>)}
           {help}
+          {rawErrors.map(error => <div className="error">{error}</div>)}
         </div>
     );
 }
