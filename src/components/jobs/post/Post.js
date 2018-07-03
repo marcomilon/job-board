@@ -2,16 +2,17 @@ import React from 'react'
 import Form from 'react-jsonschema-form'
 import Nav from '../common/Nav'
 import Footer from '../common/Footer'
-import Job from './forms/Job'
-import Company from './forms/Company'
-import { db } from '../../firebase';
+import Job from './Job'
+import Preview from './Preview'
+import { db } from '../../firebase'
 
 class Post extends React.Component {
     
     constructor(props) {
-        super(props);
-        this.state = {step: 1};
-        this.submitJob = this.submitJob.bind(this);
+        super(props)
+        this.state = {step: 1}
+        this.submitJob = this.submitJob.bind(this)
+        this.changeStep = this.changeStep.bind(this)
     }
     
     submitJob({formData}) {
@@ -29,14 +30,18 @@ class Post extends React.Component {
         // });
     }
     
+    changeStep(step) {
+        console.log(step)
+    }
+    
     renderStep(step) {
         switch(step) {
             case 1:
-            return <Job submitJob={this.submitJob}/>
+                return <Job submitJob={this.submitJob} changeStep={this.changeStep}/>
             case 2:
-            return <Company />          
+                return <Preview />
             default:
-            return <Job />
+                return <Job submitJob={this.submitJob} changeStep={this.changeStep}/>
         }
     }
     
