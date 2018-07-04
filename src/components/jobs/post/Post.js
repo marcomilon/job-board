@@ -1,10 +1,13 @@
 import React from 'react'
 import Form from 'react-jsonschema-form'
-import Nav from '../common/Nav'
-import Footer from '../common/Footer'
-import Job from './Job'
+
+import JobForm from './JobForm'
 import Preview from './Preview'
-import { db } from '../../firebase'
+
+import Nav from '../../common/Nav'
+import Footer from '../../common/Footer'
+
+import { db } from '../../../firebase'
 
 class Post extends React.Component {
     
@@ -30,18 +33,19 @@ class Post extends React.Component {
         // });
     }
     
-    changeStep(step) {
-        console.log(step)
+    changeStep(e) {
+        var step = e.target.getAttribute('data-step');
+        this.setState({step: parseInt(step)});
     }
     
     renderStep(step) {
         switch(step) {
             case 1:
-                return <Job submitJob={this.submitJob} changeStep={this.changeStep}/>
+                return <JobForm submitJob={this.submitJob} changeStep={this.changeStep} />
             case 2:
-                return <Preview />
+                return <Preview changeStep={this.changeStep} />
             default:
-                return <Job submitJob={this.submitJob} changeStep={this.changeStep}/>
+                return <JobForm submitJob={this.submitJob} changeStep={this.changeStep} />
         }
     }
     

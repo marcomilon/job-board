@@ -1,8 +1,9 @@
 import React from 'react'
 import Form from 'react-jsonschema-form'
+
 import DefaultFieldTemplate from './DefaultFieldTemplate'
 
-function JobsForm(props) {
+function DefaultForm(props) {
     return (<Form 
                 className="job-form" 
                 FieldTemplate={DefaultFieldTemplate} 
@@ -18,4 +19,4 @@ function JobsForm(props) {
             </Form>)
 }
 
-export default JobsForm
+export default DefaultForm

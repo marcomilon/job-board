@@ -1,9 +1,11 @@
 import React from 'react'
-import JobsForm from '../../common/form/JobsForm'
-import Logo from '../../common/Logo'
-import './job.sass'
 
-function Job(props) {
+import DefaultForm from '../../common/form/DefaultForm'
+import Steps from './common/Steps'
+
+import './jobForm.sass'
+
+function JobForm(props) {
     
     function transformErrors(errors) {
         return errors.map(error => {
@@ -152,23 +154,17 @@ function Job(props) {
         
     return (             
         <div className="row mb-5">
-            <div className="col-md-12 mt-4">
-                <div className="text-right">
-                    <button type="button" className="btn btn-primary mr-2">1. Crea anuncio</button>
-                    <button type="button" className="btn btn-light mr-2">2. Preview</button>
-                    <button type="button" className="btn btn-light mr-2">3. Publica</button>
-                </div>
-            </div>
+            <Steps changeStep={props.changeStep} active={1} />
             <div className="col-md-12 mt-4">
                 <p className="job-presentation">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
             </div>
             <div className="col-md-12">
-                <JobsForm schema={schema} uiSchema={uiSchema} transformErrors={transformErrors}/>
+                <DefaultForm schema={schema} uiSchema={uiSchema} transformErrors={transformErrors}/>
             </div>
         </div>
     )
 }
 
-export default Job;
+export default JobForm;
