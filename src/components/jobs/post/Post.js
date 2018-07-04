@@ -13,7 +13,10 @@ class Post extends React.Component {
     
     constructor(props) {
         super(props)
-        this.state = {step: 1}
+        this.state = {
+            step: 2,
+            isValid: false
+        }
         this.submitJob = this.submitJob.bind(this)
         this.changeStep = this.changeStep.bind(this)
     }
