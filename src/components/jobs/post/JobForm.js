@@ -12,6 +12,9 @@ function JobForm(props) {
             if (error.property === ".job.title") {
                 error.message = "Porfavor ingresar el título"
             }
+            if (error.property === ".job.category") {
+                error.message = "Porfavor ingresar la modalidad"
+            }
             if (error.property === ".job.place") {
                 error.message = "Porfavor ingresar la ubicación"
             }
@@ -40,6 +43,7 @@ function JobForm(props) {
                 "title": "Cuentanos sobre el puesto de trabajo",
                 "required": [
                     "title",
+                    "category",
                     "place",
                     "description",
                     "howtoapply"
@@ -55,7 +59,7 @@ function JobForm(props) {
                     },
                     "category": {
                         "type": "string",
-                        "title": "Categoria",
+                        "title": "Modalidad",
                         "enum": [
                             "Freelancer",
                             "Part time",
@@ -121,6 +125,9 @@ function JobForm(props) {
             },
             "place": {
                 "ui:help": "En que ciudad se encuentra la empresa"
+            },
+            "category": {
+                "ui:placeholder": "Seleciona..."
             },           
             "description": {
                 "classNames": "wide-input",
@@ -161,7 +168,7 @@ function JobForm(props) {
                 </p>
             </div>
             <div className="col-md-12">
-                <DefaultForm schema={schema} uiSchema={uiSchema} transformErrors={transformErrors}/>
+                <DefaultForm formData={props.formData} schema={schema} uiSchema={uiSchema} transformErrors={transformErrors} />
             </div>
         </div>
     )

@@ -12,26 +12,49 @@ function Preview(props) {
                 </p>
             </div>
             <div className="col-md-12 border-bottom pb-4 mb-4">
-                <h1>Lorem ipsum dolor sit amet</h1>
-                <h5>Fullstack.pe</h5>
-                <p className="mb-0">Lima, Perú</p>
-                <a href="https://www.fullstack.pe">www.fullstack.pe</a>
+            
+                <h1>{props.formData.job.title}</h1>
+                
+                <h4>{props.formData.company.name}</h4>
+                
+                {props.formData.company.slogan !== undefined &&
+                    <p className="mb-0">{props.formData.company.slogan}</p>
+                }
+                            
+                <p className="mb-0">{props.formData.job.place}</p>
+                
+                {props.formData.company.url !== undefined &&
+                    <p>
+                        <a href="{props.formData.company.url}" className="font-weight-bold">{props.formData.company.url}</a>
+                    </p>
+                }
+                
+                {props.formData.company.description !== undefined &&
+                    <div>
+                        <h5>Sobre la empresa</h5>
+                        <p>{props.formData.company.description}</p>
+                    </div>
+                }
+                
             </div>
+            
             <div className="col-md-12">
-                <p className="font-weight-bold">Ut enim ad minim veniam</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim eu turpis egestas pretium. Neque sodales ut etiam sit amet. Sit amet aliquam id diam maecenas ultricies mi eget. Malesuada nunc vel risus commodo. Nunc eget lorem dolor sed. Pulvinar sapien et ligula ullamcorper malesuada proin. Tincidunt vitae semper quis lectus nulla at volutpat diam. Elit at imperdiet dui accumsan sit. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in. In iaculis nunc sed augue lacus viverra vitae congue eu. Et netus et malesuada fames ac turpis. Vestibulum sed arcu non odio euismod. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. Ornare suspendisse sed nisi lacus sed viverra tellus in. Diam quis enim lobortis scelerisque fermentum dui faucibus in. Auctor neque vitae tempus quam. Aliquam purus sit amet luctus venenatis lectus. Suscipit adipiscing bibendum est ultricies integer quis auctor elit sed. Nunc sed id semper risus in hendrerit.
-                </p>
-                <p>
-                    Aliquam ut porttitor leo a diam. Et netus et malesuada fames ac turpis egestas integer. Ridiculus mus mauris vitae ultricies leo integer malesuada nunc. Viverra suspendisse potenti nullam ac tortor vitae. Iaculis eu non diam phasellus vestibulum lorem. Tincidunt praesent semper feugiat nibh. At elementum eu facilisis sed odio morbi quis. Quis ipsum suspendisse ultrices gravida dictum fusce ut. Nunc scelerisque viverra mauris in aliquam sem fringilla. Interdum consectetur libero id faucibus. A diam maecenas sed enim ut. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. In aliquam sem fringilla ut morbi tincidunt. Dolor sit amet consectetur adipiscing elit. Morbi leo urna molestie at elementum eu facilisis sed odio.
+                <h5>Descripción del empleo</h5>
+                {props.formData.job.category !== undefined &&
+                    <p>Modalidad: <span className="font-weight-bold">{props.formData.job.category}</span></p>
+                }
+                <p className="job-description">
+                {props.formData.job.description}
                 </p>
             </div>
+            
             <div className="col-md-12 bg-light p-3 mb-5">
-                <h5 className="mb-3">Postular a este trabajo</h5>
-                <p className="font-weight-bold">
-                    Envía tu CV a informes@fullstack.pe.
+                <h5 className="mb-3">Postula a este trabajo</h5>
+                <p>
+                    {props.formData.job.howtoapply}
                 </p>
             </div>
+            
             <div className="col-md-12 text-right">
                 <button type="button" className="btn btn-success">Publica</button>
             </div>

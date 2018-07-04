@@ -12,7 +12,10 @@ function DefaultForm(props) {
                 schema={props.schema} 
                 uiSchema={props.uiSchema} 
                 transformErrors={props.transformErrors}
-                liveValidate={true}>
+                liveValidate={true}
+                onSubmit={props.onSubmit}
+                formData={props.formData}
+                >
                 <div className="text-right">
                     <button className="btn btn-primary" type="submit">Continuar</button>
                 </div>
