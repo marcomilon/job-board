@@ -22,37 +22,7 @@ class Post extends React.Component {
         }
         this.submitJob = this.submitJob.bind(this)
         this.changeStep = this.changeStep.bind(this)
-    }
-    
-    submitJob({formData}) {
-        console.log(formData)
-        
-        var that = this
-        cleaner(formData.company)
-        cleaner(formData.job)
-        
-        var companyEmail = formData.company.email
-        var jobTitle = formData.job.title
-        
-        // db.collection("companies").doc(companyEmail).set(
-        //     formData.company
-        // ).then(function() {
-        //     var docRef = db.collection("companies").doc(companyEmail)
-        //     docRef.collection("jobs").doc(jobTitle).set(formData.job)
-        //     that.setState({
-        //         step: 2,
-        //         formData: formData,
-        //         isValid: true
-        //     })
-        // }).catch(function(error) {
-        //     console.error("Error adding document: ", error)
-        // })
-        
-        that.setState({
-            step: 2,
-            formData: formData,
-            isValid: true
-        })
+        this.publishJob = this.publishJob.bind(this)
     }
     
     changeStep(e) {
@@ -62,16 +32,63 @@ class Post extends React.Component {
         }
     }
     
+    submitJob({formData}) {
+            
+        this.setState({
+            step: 2,
+            formData: formData,
+            isValid: true
+        })
+        
+    }
+    
+    publishJob() {
+                
+        var formData = this.state.formData
+        var that = this
+        
+        cleaner(formData.company)
+        cleaner(formData.job)
+        
+        var companyEmail = formData.company.email
+        var jobTitle = formData.job.title
+        
+        var companyRef = db.collection("companies").doc(companyEmail)
+        var jobRef = companyRef.collection("jobs").doc(jobTitle)
+        
+        companyRef.set(
+            formData.company
+        ).then(function() {
+                        
+            jobRef.set(formData.job).then(function() {
+                                
+                db.collection("posts").add( {
+                    company: companyRef,
+                    job: formData.job
+                })
+                
+                that.setState({
+                    step: 3
+                })
+                
+            })
+            
+        }).catch(function(error) {
+            console.error("Error adding document: ", error)
+        })
+        
+    }
+    
     renderStep(step) {
         switch(step) {
             case 1:
-                return <JobForm formData={this.state.formData} changeStep={this.changeStep} />
+                return <JobForm formData={this.state.formData} changeStep={this.changeStep} submitJob={this.submitJob} />
             case 2:
-                return <Preview changeStep={this.changeStep} formData={this.state.formData} />
+                return <Preview formData={this.state.formData} changeStep={this.changeStep} publishJob={this.publishJob}/>
             case 3:
                 return <Publish />
             default:
-                return <JobForm formData={this.state.formData} submitJob={this.submitJob} changeStep={this.changeStep} />
+                return <JobForm formData={this.state.formData} changeStep={this.changeStep} />
         }
     }
     

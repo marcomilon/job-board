@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Steps from './common/Steps'
 
@@ -10,9 +11,12 @@ function Publish(props) {
               <div className="centered-box text-center">
                 <h1>Excelente</h1>
                 <p>
-                    Antes de publicar tenemos que verifiar el aviso. El proceso dura máximo 24 horas.
+                    Antes de publicar tenemos que verificar el aviso. 
                 </p>
-                <a className="btn btn-success" href="/">Ir a inicio</a>
+                <p>
+                    El proceso dura máximo 24 horas.
+                </p>
+                <Link to="/" className="btn btn-success">Ir a inicio</Link>
               </div>
             </div>
             

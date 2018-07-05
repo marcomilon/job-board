@@ -168,7 +168,7 @@ function JobForm(props) {
                 </p>
             </div>
             <div className="col-md-12">
-                <DefaultForm formData={props.formData} schema={schema} uiSchema={uiSchema} transformErrors={transformErrors} />
+                <DefaultForm formData={props.formData} schema={schema} uiSchema={uiSchema} transformErrors={transformErrors} onSubmit={props.submitJob} />
             </div>
         </div>
     )

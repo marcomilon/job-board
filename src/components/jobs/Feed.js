@@ -1,12 +1,15 @@
 import React from 'react'
-import Nav from './../common/Nav'
+
 import Card from './Card'
 
-class Feed extends React.Component {
+import Nav from './../common/Nav'
+import Footer from './../common/Footer'
+
+import { db } from './../../firebase'
+
+function Feed(props) {
   
-  constructor(props) {
-    super(props);
-    this.state = {
+    var state = {
       jobs: [
         {
           title: "title 1",
@@ -22,26 +25,25 @@ class Feed extends React.Component {
         }
       ]
     }
-    
-    this.menu = [
+
+    var menu = [
       {
         to: '/post',
         label: 'Publica tu empleo'
       }
     ]
     
-  }
+    //var jobs = 
   
-  
-  render() {
+
     return (
       <div>
-        <Nav menu={this.menu} />
+        <Nav menu={menu} />
         <main role="main">
           <div className="container">
             <h1 id="main-title" className="mt-5 mb-3">Empleos para ti</h1>
             
-            {this.state.jobs.map((job) =>
+            {state.jobs.map((job) =>
               <Card title={job.title} intro={job.intro}/>
             )}
             
@@ -49,7 +51,7 @@ class Feed extends React.Component {
         </main>
       </div>
     )
-  }
+
 }
 
 export default Feed
