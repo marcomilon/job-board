@@ -36,7 +36,7 @@ class Post extends React.Component {
             
         this.setState({
             step: 2,
-            formData: formData,
+            post: formData,
             isValid: true
         })
         
@@ -44,30 +44,31 @@ class Post extends React.Component {
     
     publishJob() {
                 
-        var formData = this.state.formData
+        var post = this.state.post
         var that = this
         
-        cleaner(formData.company)
-        cleaner(formData.job)
+        cleaner(post.company)
+        cleaner(post.job)
         
-        var companyEmail = formData.company.email
-        var jobTitle = formData.job.title
+        var companyEmail = post.company.email
+        var jobTitle = post.job.title
         
-        formData.job.timestamp = firebase.firestore.FieldValue.serverTimestamp()
+        post.job.timestamp = firebase.firestore.FieldValue.serverTimestamp()
         
         var companyRef = db.collection("companies").doc(companyEmail)
         var jobRef = companyRef.collection("jobs").doc(jobTitle)
         
         companyRef.set(
-            formData.company
+            post.company
         ).then(function() {
                         
-            jobRef.set(formData.job).then(function() {
+            jobRef.set(post.job).then(function() {
                                 
                 db.collection("posts").add( {
-                    company: formData.company.name,
-                    job: formData.job.title,
-                    timestamp: formData.job.timestamp,
+                    company: post.company.name,
+                    title: post.job.title,
+                    timestamp: post.job.timestamp,
+                    companyRef: companyRef,
                     jobRef: jobRef,
                     published: true
                 })
@@ -87,13 +88,13 @@ class Post extends React.Component {
     renderStep(step) {
         switch(step) {
             case 1:
-                return <JobForm formData={this.state.formData} changeStep={this.changeStep} submitJob={this.submitJob} />
+                return <JobForm formData={this.state.post} changeStep={this.changeStep} submitJob={this.submitJob} />
             case 2:
-                return <Preview formData={this.state.formData} changeStep={this.changeStep} publishJob={this.publishJob}/>
+                return <Preview post={this.state.post} changeStep={this.changeStep} publishJob={this.publishJob}/>
             case 3:
                 return <Publish />
             default:
-                return <JobForm formData={this.state.formData} changeStep={this.changeStep} />
+                return <JobForm formData={this.state.post} changeStep={this.changeStep} submitJob={this.submitJob}/>
         }
     }
     
