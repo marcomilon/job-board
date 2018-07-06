@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Feed from './jobs/Feed'
+import Feed from './jobs/feed/Feed'
 import Post from './jobs/post/Post'
 import Login from './user/Login'
 import Signin from './user/Signin'

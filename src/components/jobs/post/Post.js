@@ -8,7 +8,7 @@ import Publish from './Publish'
 import Nav from '../../common/Nav'
 import Footer from '../../common/Footer'
 
-import { db } from '../../../firebase'
+import firebase, { db } from '../../../firebase'
 
 var cleaner = require('deep-cleaner')
 
@@ -53,6 +53,8 @@ class Post extends React.Component {
         var companyEmail = formData.company.email
         var jobTitle = formData.job.title
         
+        formData.job.timestamp = firebase.firestore.FieldValue.serverTimestamp()
+        
         var companyRef = db.collection("companies").doc(companyEmail)
         var jobRef = companyRef.collection("jobs").doc(jobTitle)
         
@@ -63,8 +65,11 @@ class Post extends React.Component {
             jobRef.set(formData.job).then(function() {
                                 
                 db.collection("posts").add( {
-                    company: companyRef,
-                    job: formData.job
+                    company: formData.company.name,
+                    job: formData.job.title,
+                    timestamp: formData.job.timestamp,
+                    jobRef: jobRef,
+                    published: true
                 })
                 
                 that.setState({
