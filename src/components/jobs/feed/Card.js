@@ -26,11 +26,11 @@ class Card extends React.Component {
     renderRedirect() {
         
         // var companyRef = this.props.job.companyRef.key
-        // var jobRef = this.props.job.jobRef.key
-        
+        var jobRef = this.props.job.jobRef.path
+                
         if (this.state.redirect) {
             return <Redirect to={{
-                pathname: '/job',
+                pathname: '/job/' + jobRef,
                 state: { 
                     // companyRef: companyRef,
                     // jobRef: jobRef

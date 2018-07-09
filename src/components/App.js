@@ -15,7 +15,7 @@ function App(props) {
         <Route path="/post" component={Post}/>
         <Route path="/login" component={Login}/>
         <Route path="/signin" component={Signin}/>
-        <Route path="/job" component={Job}/>
+        <Route path="/job/:id" component={Job}/>
       </div>
     </Router>
   )
