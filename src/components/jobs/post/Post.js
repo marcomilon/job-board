@@ -11,6 +11,7 @@ import Footer from '../../common/Footer'
 import firebase, { db } from '../../../firebase'
 
 var cleaner = require('deep-cleaner')
+var slug = require('slug')
 
 class Post extends React.Component {
     
@@ -50,13 +51,20 @@ class Post extends React.Component {
         cleaner(post.company)
         cleaner(post.job)
         
-        var companyEmail = post.company.email
-        var jobTitle = post.job.title
+        var companyName = slug(post.company.name, {
+            lower: true
+        })
+        
+        var jobTitle = slug(post.job.title, {
+            lower: true
+        })
+        
+        var jobSlug = companyName + '-' + jobTitle;
         
         post.job.timestamp = firebase.firestore.FieldValue.serverTimestamp()
         
-        var companyRef = db.collection("companies").doc(companyEmail)
-        var jobRef = companyRef.collection("jobs").doc(jobTitle)
+        var companyRef = db.collection("companies").doc(companyName)
+        var jobRef = companyRef.collection("jobs").doc(jobSlug)
         
         companyRef.set(
             post.company
@@ -65,11 +73,12 @@ class Post extends React.Component {
             jobRef.set(post.job).then(function() {
                                 
                 db.collection("posts").add( {
-                    company: post.company.name,
+                    companyName: post.company.name,
                     title: post.job.title,
                     timestamp: post.job.timestamp,
-                    companyRef: companyRef,
-                    jobRef: jobRef,
+                    job: post.job,
+                    company: post.company,
+                    slug: jobSlug,
                     published: true
                 })
                 

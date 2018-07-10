@@ -26,14 +26,18 @@ class Card extends React.Component {
     renderRedirect() {
         
         // var companyRef = this.props.job.companyRef.key
-        var jobRef = this.props.job.jobRef.path
+        //var jobRef = this.props.job.jobRef.path
+        
+        var preview = {
+            job: this.props.job.job,
+            company: this.props.job.company,
+        }
                 
         if (this.state.redirect) {
             return <Redirect to={{
-                pathname: '/job/' + jobRef,
+                pathname: '/job/' + this.props.job.slug,
                 state: { 
-                    // companyRef: companyRef,
-                    // jobRef: jobRef
+                    preview: preview,
                 }
             }} />
         }
@@ -45,7 +49,7 @@ class Card extends React.Component {
             {this.renderRedirect()}
             <div onClick={this.goToJob} className="job-post">
                 <div className="job-post__company">
-                  {this.props.job.company}
+                  {this.props.job.companyName}
                 </div>
                 <div>
                     {this.props.job.title}
