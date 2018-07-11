@@ -4,7 +4,7 @@ function Job(props) {
     console.log(props)
     return (
         <div>
-            <div className="col-md-12 border-bottom pb-4 mb-4">
+            <div className="border-bottom pb-4 mb-4">
             
                 <h1>{props.post.job.title}</h1>
                 
@@ -31,7 +31,7 @@ function Job(props) {
                 
             </div>
             
-            <div className="col-md-12">
+            <div>
                 <h5>Descripción del empleo</h5>
                 {props.post.job.category !== undefined &&
                     <p>Modalidad: <span className="font-weight-bold">{props.post.job.category}</span></p>
@@ -41,12 +41,13 @@ function Job(props) {
                 </p>
             </div>
             
-            <div className="col-md-12 bg-light p-3 mb-5">
+            <div className="bg-light p-3 mt-5 mb-5">
                 <h5 className="mb-3">Postula a este trabajo</h5>
                 <p>
                     {props.post.job.howtoapply}
                 </p>
             </div>
+            
         </div>
     )
 }

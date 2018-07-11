@@ -34,10 +34,10 @@ class Card extends React.Component {
         }
                 
         if (this.state.redirect) {
-            return <Redirect to={{
+            return <Redirect push={true} to={{
                 pathname: '/job/' + this.props.job.slug,
                 state: { 
-                    preview: preview,
+                    preview: preview
                 }
             }} />
         }
