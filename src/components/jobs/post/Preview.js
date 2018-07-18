@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Steps from './common/Steps'
-import Job from './common/Job'
+import JobPreview from '../common/JobPreview'
 
 function Preview(props) {
     return (
@@ -15,7 +15,9 @@ function Preview(props) {
                 </p>
             </div>
             
-            <Job post={props.post}/>
+            <div className="col-md-12">
+            <JobPreview company={props.post.company} job={props.post.job}/>
+            </div>
             
             <div className="col-md-12 text-right">
                 <button type="button" className="btn btn-success" onClick={props.publishJob}>Publica</button>

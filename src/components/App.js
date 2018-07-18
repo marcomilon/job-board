@@ -8,7 +8,6 @@ import Signin from './user/Signin'
 
 
 function App(props) {
-  console.log(props)
   return (
     <Router>
       <div>

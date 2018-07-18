@@ -45,7 +45,7 @@ class Card extends React.Component {
 
     render() {
       return (                
-          <div className="mt-2 mb-2 pt-1 pb-1 border-bottom">
+          <div className="mt-3 pb-3 pt-1 border-bottom">
             {this.renderRedirect()}
             <div onClick={this.goToJob} className="job-post">
                 <div className="job-post__company">

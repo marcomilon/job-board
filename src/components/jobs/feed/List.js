@@ -2,10 +2,7 @@ import React from 'react'
 
 import Card from './Card'
 
-function List(props) {
-    
-    console.log(props.jobs)
-    
+function List(props) {    
     return (
         <div>
             <h1 id="main-title" className="mt-5 mb-5">Empleos para ti</h1>
