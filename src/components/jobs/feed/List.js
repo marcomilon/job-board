@@ -6,9 +6,11 @@ function List(props) {
     return (
         <div>
             <h1 id="main-title" className="mt-5 mb-5">Empleos para ti</h1>
+            <ul>
             {props.jobs.map((job) =>
               <Card job={job} />
             )}
+            </ul>
         </div>
     )
 }

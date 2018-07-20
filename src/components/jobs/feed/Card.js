@@ -1,9 +1,7 @@
 import React from 'react'
 
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import moment from 'moment'
-
-import './card.sass'
 
 class Card extends React.Component {
     
@@ -45,20 +43,20 @@ class Card extends React.Component {
 
     render() {
       return (                
-          <div className="mt-3 pb-3 pt-1 border-bottom">
+          <li className="mt-3 pb-3 pt-1 border-bottom">
             {this.renderRedirect()}
-            <div onClick={this.goToJob} className="job-post">
-                <div className="job-post__company">
+            <Link to={'/job/' + this.props.job.slug} >
+                <span>
                   {this.props.job.companyName}
-                </div>
-                <div>
+                </span>
+                <span>
                     {this.props.job.title}
-                </div>
-                <div className="text-right">
+                </span>
+                <span className="text-right">
                     {moment(this.props.job.timestamp).fromNow()}
-                </div>
-            </div>
-          </div>
+                </span>
+            </Link>
+          </li>
       )
   }
   
