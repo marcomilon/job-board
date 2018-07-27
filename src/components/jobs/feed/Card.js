@@ -3,6 +3,8 @@ import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import moment from 'moment'
 
+import './card.sass'
+
 class Card extends React.Component {
     
     constructor(props) {
@@ -44,9 +46,8 @@ class Card extends React.Component {
     render() {
       return (                
           <li className="mt-3 pb-3 pt-1 border-bottom">
-            {this.renderRedirect()}
-            <Link to={'/job/' + this.props.job.slug} >
-                <span>
+            <Link to={'/job/' + this.props.job.slug} className="job-post">
+                <span className="job-post__company">
                   {this.props.job.companyName}
                 </span>
                 <span>
