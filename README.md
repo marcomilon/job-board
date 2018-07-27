@@ -1,4 +1,4 @@
-# React Boilerplate
+# JobBoard
 
 ## Instructions
 `npm install`
