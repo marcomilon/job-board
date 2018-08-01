@@ -23,11 +23,9 @@ class JobView extends React.Component {
     }
     
     componentDidMount() {
-        console.log(this.state.slug.id)
         var that = this
         db.collection("posts").where("slug", "==", this.state.slug.id).limit(1).get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-                console.log(doc.id, " => ", doc.data().company);
                 that.setState({
                     job: doc.data().job,
                     company: doc.data().company,
@@ -37,25 +35,20 @@ class JobView extends React.Component {
         });
     }
     
-    preRender(loaded) {
-        if(loaded) {
-            return <JobPreview company={this.state.company} job={this.state.job}/>
-        } else {
-            return <Preloader />
-        }
-    }
-    
     render() {
         return (
             <div>
                 <Nav />
                 <div className="container mt-5">
-                    <div className="mb-3">
-                        <Link to='/'><i className="fas fa-arrow-left fa-sm"></i> Ver todos los trabajos</Link>
-                    </div>
                     
-                    {this.preRender(this.state.loaded)}
-                    
+                    {this.state.loaded &&
+                      <React.Fragment>
+                        <div className="mb-3 text-right">
+                            <Link to='/'><i className="fas fa-arrow-left fa-sm"></i> Ver todos los trabajos</Link>
+                        </div>
+                        <JobPreview company={this.state.company} job={this.state.job}/>
+                      </React.Fragment>
+                    }
                 </div>
                 <Footer />
             </div>

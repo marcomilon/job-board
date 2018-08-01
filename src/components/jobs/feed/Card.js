@@ -12,7 +12,7 @@ function Card(props) {
     return (                
         <li className="mt-3 pb-3 pt-1 border-bottom">
             <Link to={'/job/' + props.job.slug} className="job-post">
-                <span className="job-post__company">
+                <span>
                   {props.job.companyName}
                 </span>
                 <span>
