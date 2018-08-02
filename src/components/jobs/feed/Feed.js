@@ -28,7 +28,7 @@ class Feed extends React.Component {
     
     componentDidMount() {
         var that = this
-        db.collection("posts").get().then(function(querySnapshot) {
+        db.collection("posts").orderBy('timestamp', "desc").get().then(function(querySnapshot) {
             var jobs = []
             querySnapshot.forEach(function(doc) {
                 jobs.push(doc.data())
