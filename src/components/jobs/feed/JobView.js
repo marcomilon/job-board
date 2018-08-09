@@ -20,6 +20,13 @@ class JobView extends React.Component {
             loaded: false,
             slug: props.match.params
         }
+        
+        this.menu = [
+          {
+            to: '/post',
+            label: 'Publica tu empleo'
+          }
+        ]
     }
     
     componentDidMount() {
@@ -38,7 +45,7 @@ class JobView extends React.Component {
     render() {
         return (
             <div>
-                <Nav />
+                <Nav menu={this.menu} />
                 <div className="container mt-5">
                     
                     {this.state.loaded &&
