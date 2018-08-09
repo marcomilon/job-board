@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo-reverse-small.png';
 
 function Logo(props) {
-  return (<span className="logo">Trabajos</span>)
+  return (<span className="logo">Jobly</span>)
 }
 
 export default Logo
