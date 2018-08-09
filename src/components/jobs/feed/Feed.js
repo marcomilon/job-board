@@ -27,6 +27,9 @@ class Feed extends React.Component {
     }
     
     componentDidMount() {
+        
+        document.title = "Jobly"
+        
         var that = this
         db.collection("posts").orderBy('timestamp', "desc").get().then(function(querySnapshot) {
             var jobs = []
