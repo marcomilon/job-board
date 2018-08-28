@@ -19,7 +19,7 @@ function Card(props) {
                     {props.job.title}
                 </span>
                 <span className="text-right">
-                    {moment(props.job.timestamp).fromNow()}
+                    {moment(props.job.timestamp).format("MMM DD")}
                 </span>
             </Link>
         </li>
