@@ -24,6 +24,8 @@ class Post extends React.Component {
         this.submitJob = this.submitJob.bind(this)
         this.changeStep = this.changeStep.bind(this)
         this.publishJob = this.publishJob.bind(this)
+        
+        document.title = "Publica tu empleo"
     }
     
     changeStep(e) {

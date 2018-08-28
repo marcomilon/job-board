@@ -30,9 +30,13 @@ class JobView extends React.Component {
     }
     
     componentDidMount() {
+                
         var that = this
         db.collection("posts").where("slug", "==", this.state.slug.id).limit(1).get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
+                
+                document.title = doc.data().company.name + ": " + doc.data().job.title
+                
                 that.setState({
                     job: doc.data().job,
                     company: doc.data().company,
@@ -50,7 +54,7 @@ class JobView extends React.Component {
                     
                     {this.state.loaded &&
                       <React.Fragment>
-                        <div className="mb-3 text-right">
+                        <div className="mb-3">
                             <Link to='/'><i className="fas fa-arrow-left fa-sm"></i> Ver todos los trabajos</Link>
                         </div>
                         <JobPreview company={this.state.company} job={this.state.job}/>

@@ -24,12 +24,12 @@ class Feed extends React.Component {
             label: 'Publica tu empleo'
           }
         ]
+        
+        document.title = "Trabajos en linea"
     }
     
     componentDidMount() {
-        
-        document.title = "Jobly"
-        
+                
         var that = this
         db.collection("posts").orderBy('timestamp', "desc").get().then(function(querySnapshot) {
             var jobs = []

@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import Steps from './common/Steps'
 
 function Publish(props) {
+    
+    document.title = "Excelente"
+    
     return (
         <div className="row mb-5">
             
