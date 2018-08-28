@@ -1,28 +1,49 @@
 ul
   list-style-type: none
   padding-left: 0
+
+li
+  margin: 0 0 3px 0
     
 .job-post
+    cursor: pointer
+    display: flex
+    height: 80px
+    
+.job-img
+    width: 80px
+    
+.job-post-img
+    object-fit: cover
+    width: 80px
+    height: 80px
+    
+.job-post:hover
+    text-decoration: none
+  
+.job-info
     cursor: pointer
     display: flex
     flex-direction: row
     align-content: flex-start
     text-decoration: none
+    height: 80px
+    width: 100%
     
-.job-post:hover
-    text-decoration: none
+.job-info > span
+    margin: 0 10px 0 0
+    display: flex
+    align-items: center  
     
-.job-post > span
-    margin: 10px 10px 10px 0
-
-.job-post span:last-child
+.job-info span:first-child
+    font-weight: 400
+    color: #383838
+    margin-left: 10px
+    margin-right: 15px 
+    
+.job-info span:last-child
     margin-top: 10px
     margin-bottom: 10px
     margin-right: 0
     margin-left: auto
-    color: #383838
-    
-.job-post span:first-child
-    font-weight: 400
-    color: #383838
-    margin-right: 15px
+    color: #383838         

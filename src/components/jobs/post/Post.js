@@ -8,7 +8,7 @@ import Publish from './Publish'
 import Nav from '../../common/Nav'
 import Footer from '../../common/Footer'
 
-import firebase, { db } from '../../../firebase'
+import firebase, { db, storage } from '../../../firebase'
 
 var cleaner = require('deep-cleaner')
 var slug = require('slug')
@@ -73,16 +73,38 @@ class Post extends React.Component {
         ).then(function() {
                         
             jobRef.set(post.job).then(function() {
-                                
-                db.collection("posts").add( {
-                    companyName: post.company.name,
-                    title: post.job.title,
-                    timestamp: post.job.timestamp,
-                    job: post.job,
-                    company: post.company,
-                    slug: jobSlug,
-                    published: true
-                })
+                
+                console.log(post.company.logo)
+                
+                if(post.company.logo) {
+                    var storageRef = firebase.storage().ref().child('mountains.jpg');
+                    var message = post.company.logo;
+                    storageRef.putString(message, 'data_url').then(function(snapshot) {
+                        snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                            console.log(downloadURL)
+                            db.collection("posts").add({
+                                companyName: post.company.name,
+                                title: post.job.title,
+                                timestamp: post.job.timestamp,
+                                job: post.job,
+                                company: post.company,
+                                slug: jobSlug,
+                                published: true,
+                                logoUrl: downloadURL
+                            })
+                        });
+                    });
+                } else {                                
+                    db.collection("posts").add({
+                        companyName: post.company.name,
+                        title: post.job.title,
+                        timestamp: post.job.timestamp,
+                        job: post.job,
+                        company: post.company,
+                        slug: jobSlug,
+                        published: true,
+                    })
+                }
                 
                 that.setState({
                     step: 3

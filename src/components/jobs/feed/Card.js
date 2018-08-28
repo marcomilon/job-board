@@ -10,17 +10,24 @@ function Card(props) {
     moment.locale('es')
     
     return (                
-        <li className="mt-3 pb-3 pt-1 border-bottom">
+        <li>
             <Link to={'/job/' + props.job.slug} className="job-post">
-                <span>
-                  {props.job.companyName}
+                <span className="job-img">
+                {props.job.logoUrl && 
+                    <img className="job-img" src={props.job.logoUrl} className="job-post-img"/>
+                }
                 </span>
-                <span>
-                    {props.job.title}
-                </span>
-                <span className="text-right">
-                    {moment(props.job.timestamp).format("MMM DD")}
-                </span>
+                <div className="job-info">
+                    <span>
+                      {props.job.companyName}
+                    </span>
+                    <span>
+                        {props.job.title}
+                    </span>
+                    <span className="text-right">
+                        {moment(props.job.timestamp).format("MMM DD")}
+                    </span>
+                </div>
             </Link>
         </li>
     )
