@@ -14,7 +14,7 @@ function Card(props) {
             <Link to={'/job/' + props.job.slug} className="job-post">
                 <span className="job-img">
                 {props.job.logoUrl && 
-                    <img src={props.job.logoUrl} className="job-img-logo"/>
+                    <img src={props.job.logoUrl} className="company-logo"/>
                 }
                 </span>
                 <div className="job-info">
