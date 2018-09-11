@@ -18,6 +18,7 @@
     "deep-cleaner": "^1.1.2",
     "firebase": "^5.0.4",
     "moment": "^2.22.2",
+    "parse-data-url": "^0.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-jsonschema-form": "^1.0.3",

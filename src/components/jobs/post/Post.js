@@ -12,6 +12,7 @@ import firebase, { db, storage } from '../../../firebase'
 
 var cleaner = require('deep-cleaner')
 var slug = require('slug')
+var parseDataUrl = require('parse-data-url')
 
 class Post extends React.Component {
     
@@ -67,21 +68,17 @@ class Post extends React.Component {
         
         var companyRef = db.collection("companies").doc(companyName)
         var jobRef = companyRef.collection("jobs").doc(jobSlug)
-        
+                
         companyRef.set(
             post.company
         ).then(function() {
-                        
+        
             jobRef.set(post.job).then(function() {
-                
-                console.log(post.company.logo)
-                
                 if(post.company.logo) {
-                    var storageRef = firebase.storage().ref().child('mountains.jpg');
-                    var message = post.company.logo;
-                    storageRef.putString(message, 'data_url').then(function(snapshot) {
+                    var parsed = parseDataUrl(post.company.logo)
+                    var storageRef = firebase.storage().ref().child(parsed.name);
+                    storageRef.putString(post.company.logo, 'data_url').then(function(snapshot) {
                         snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                            console.log(downloadURL)
                             db.collection("posts").add({
                                 companyName: post.company.name,
                                 title: post.job.title,
@@ -105,17 +102,16 @@ class Post extends React.Component {
                         published: true,
                     })
                 }
-                
+        
                 that.setState({
                     step: 3
                 })
-                
-            })
-            
-        }).catch(function(error) {
-            console.error("Error adding document: ", error)
-        })
         
+            })
+        
+        }).catch(function(error) {
+            console.error("Error adding job: ", error)
+        })
     }
     
     renderStep(step) {

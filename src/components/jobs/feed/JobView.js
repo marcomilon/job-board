@@ -17,6 +17,7 @@ class JobView extends React.Component {
         this.state = {
             job: null,
             company: null,
+            published: null,
             loaded: false,
             slug: props.match.params
         }
